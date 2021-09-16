@@ -10,7 +10,7 @@ function Shopextent ({collections}) {
     return (
                <div className='collections-overview'>
                {collections.map(({id , ...othersection}) => (
-               <Shopreview key={id} {...othersection} /> )             
+               <Shoppreview key={id} {...othersection} /> )             
                )}
                </div>
            )
