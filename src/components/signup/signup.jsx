@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Custombtn from '../customButton/custombtn';
 import Forminput from '../forminput/forminput';
 import { auth , createDocument } from '../../firebase/firebase.utility';
-import "./signup.scss";
+import { SignUpContainer, SignUpTitle } from './signup.styled';
 
 export default class Signup extends Component {
 
@@ -51,8 +51,8 @@ export default class Signup extends Component {
     render() {
         const {displayName ,email , password ,confirmpassword} = this.state;
         return (
-            <div className="sign-up">
-                <h2 className="title"> i do not have an account</h2>
+            <SignUpContainer>
+                <SignUpTitle> i do not have an account</SignUpTitle>
                 <span>sign up with your email and password</span>
                 <form className="sign-up-form" onSubmit={this.handleSubmit}>
                 <Forminput
@@ -89,7 +89,7 @@ export default class Signup extends Component {
                    />
                    <Custombtn type="submit" >SIGN UP </Custombtn>
                 </form>
-            </div>
+            </SignUpContainer>
         )
     }
 }

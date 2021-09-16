@@ -9,9 +9,10 @@ import React, { Component } from 'react'
  import { createStructuredSelector } from "reselect";
  import { selectUser } from "../src/redux/user/user.selector"
  import { setCurrentUser } from './redux/user/user.actions.';
+ import { ShopSelect1 } from "./redux/shop/shop.selector";
  import SigninUp from './pages/Signup/sign-in-Up';
  import { Route ,Switch ,Redirect } from "react-router-dom";
- import { auth , createDocument} from './firebase/firebase.utility';
+ import { auth , createDocument ,addCollectionAnddocument} from './firebase/firebase.utility';
 
  
  
@@ -20,7 +21,8 @@ import React, { Component } from 'react'
     unsubscribeFromAuth = null;
     
     componentDidMount(){
-      const { setCurrentUser } = this.props;
+
+      const { setCurrentUser , collection } = this.props;
       this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth =>{ 
      if(userAuth){
       const userRef = await createDocument(userAuth); 
@@ -35,8 +37,9 @@ import React, { Component } from 'react'
        else{
         setCurrentUser(userAuth);
        } 
+       addCollectionAnddocument( "collection" , collection.map(({ title , items}) => {title , items}))
     })
-    }
+    } 
 
     componentWillUnmount(){
       this.unsubscribeFromAuth();
@@ -67,7 +70,8 @@ import React, { Component } from 'react'
  }
 
  const mapStateToProps =createStructuredSelector({
-   currentuser : selectUser
+   currentuser : selectUser,
+   collection : ShopSelect1
 });
 
 const mapDispatchToProps = dispatch => ({

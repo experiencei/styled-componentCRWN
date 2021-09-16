@@ -14,12 +14,12 @@ const shoppageSelect = state => state.shop;
 export const ShopSelect = createSelector(
     [shoppageSelect],
     shop =>  shop.collections
-)
+);
 
 export const ShopSelect1 = createSelector(
   [ShopSelect],
   collections => Object.keys(collections).map( key => collections[key] )
-)
+);
 
 
 
