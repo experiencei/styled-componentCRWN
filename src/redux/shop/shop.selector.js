@@ -18,7 +18,7 @@ export const ShopSelect = createSelector(
 
 export const ShopSelect1 = createSelector(
   [ShopSelect],
-  collections => Object.keys(collections).map( key => collections[key] )
+  collections => collections ? Object.keys(collections).map( key => collections[key] ) : []
 );
 
 
@@ -26,7 +26,7 @@ export const ShopSelect1 = createSelector(
 export const selectCollection = collectionUrlParam =>
   createSelector(
     [ShopSelect],
-    collections => collections[collectionUrlParam]
+    collections =>( collections? collections[collectionUrlParam] : null)
   );
 
 
