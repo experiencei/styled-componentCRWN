@@ -22,7 +22,7 @@ class Shoppage extends Component {
     const { CollectionMap} = this.props
     const collectionRef = firestore.collection("collection");
 
-    collectionRef.onSnapshot( async snapShot => 
+    this.unsubcribefromSnapshot = collectionRef.get().then(snapShot => 
       CollectionMap(convertCollectionsSnapshotTomap(snapShot)) 
     )
     this.setState({ loading : false}); 
@@ -34,7 +34,7 @@ class Shoppage extends Component {
    return  (
       <div className="shoppage">
       <Route exact path={`${match.path}`} 
-      render={ (props) => <WithSpinnerShoppage isLoading={loading} {...props}/>}/>
+       render={ (props) => <WithSpinnerShoppage isLoading={loading} {...props}/>}/>
     <Route path={`${match.path}/:collectionId`} 
     render={ (props) => <WithSpinnerCollectionpage isLoading={loading} {...props} />} />
          </div>
