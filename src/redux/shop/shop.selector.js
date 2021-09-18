@@ -4,7 +4,7 @@ import { createSelector } from "reselect";
 //     hats : 1,
 //     sneakers : 2,
 //     jackets : 3,
-//     womens : 4,
+//     womens : 4, 
 //     mens : 5
 // }         .find( shopdate => shopdate.id === COLLECTION_ID_MAP[collectionUrlParam])
 
@@ -29,7 +29,20 @@ export const selectCollection = collectionUrlParam =>
     collections =>( collections? collections[collectionUrlParam] : null)
   );
 
+  // export const selectisCollection = createSelector(
+  //   [ShopSelect],
+  //   shop => isFetching
+  // )
 
+  export const selectisCollection = createSelector(
+    [shoppageSelect],
+    shop =>  shop.isFetching
+);
+
+export const SelectisCollectionLoading = createSelector(
+  [shoppageSelect],
+  shop =>  !!shop.collections
+);
   // import { createSelector } from 'reselect';
 
   // const selectShop = state => state.shop;
